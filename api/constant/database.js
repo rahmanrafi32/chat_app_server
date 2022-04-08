@@ -6,10 +6,8 @@ mongoose.connect(`mongodb://localhost:27017/chat_app`,
         useCreateIndex: true,
         useUnifiedTopology: true,
         useFindAndModify: true,
-    }, (err) => {
-        err
-            ? console.log("Database connection problem")
-            : console.log("database Connected");
+    }, () => {
+        console.log("Database Connected");
     })
 
 export const db = mongoose.connection;
