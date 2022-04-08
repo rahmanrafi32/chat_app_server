@@ -1,0 +1,36 @@
+{
+  "name": "chat_app_server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon bin/dev.js",
+    "start": "node bin/prod",
+    "build": "node bin/build"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.17.6",
+    "@babel/core": "^7.17.9",
+    "@babel/node": "^7.16.8",
+    "@babel/plugin-transform-runtime": "^7.17.0",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/register": "^7.17.7",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "@graphql-tools/schema": "^8.3.7",
+    "apollo-server-core": "^3.6.7",
+    "apollo-server-express": "^3.6.7",
+    "bcrypt": "^5.0.1",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "graphql": "^16.3.0",
+    "graphql-subscriptions": "^2.0.0",
+    "graphql-ws": "^5.7.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.2.10",
+    "shelljs": "^0.8.5",
+    "ws": "^8.5.0"
+  }
+}
