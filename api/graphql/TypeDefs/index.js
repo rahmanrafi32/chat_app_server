@@ -3,9 +3,10 @@ import {gql} from "apollo-server-core";
 export const typeDefs = gql`
     type SuccessMessage{
         message: String,
-        jwt: String
+        access_token:String,
+        refresh_token: String
     }
-    
+
     input SignUpInput{
         firstName:String,
         lastName:String,
@@ -13,9 +14,15 @@ export const typeDefs = gql`
         password:String,
         phoneNumber:String
     }
-    
+
+    input SignInInput{
+        email: String,
+        password:String
+    }
+
     type Query{
         testQueries: String
+        signIn(payload: SignInInput): SuccessMessage!
     }
 
     type Mutation{
