@@ -14,13 +14,17 @@ const validatePass = function (password) {
 const userSchema = new mongoose.Schema({
         firstName: {
             type: String,
-            required: true,
+            required: 'First name is required',
             min: [2, 'Name is too short'],
         },
         lastName: {
             type: String,
-            required: true,
+            required: 'Last name is required',
             min: [2, 'Name is too short'],
+        },
+        phoneNumber: {
+            type: String,
+            required: 'Phone number is required',
         },
         email: {
             type: String,
@@ -35,7 +39,7 @@ const userSchema = new mongoose.Schema({
             type: String,
             required: 'Password is required',
             validate: [validatePass, 'Please enter a valid password'],
-            match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please enter a valid password']
+            match: [/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/, 'Please enter a valid password']
         },
         profilePicture: {
             type: String
@@ -53,12 +57,5 @@ const userSchema = new mongoose.Schema({
 );
 
 userSchema.index({createdAt: 1, updatedAt: 1});
-
-userSchema.methods.encryptPassword = function (password) {
-    return bcrypt.hash(password, 10);
-};
-userSchema.methods.checkPassword = function (password) {
-    return bcrypt.compare(password, this.password);
-};
 
 export const User = mongoose.model("User", userSchema);

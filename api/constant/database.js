@@ -1,13 +1,14 @@
 import mongoose from "mongoose";
+import 'dotenv/config';
 
-mongoose.connect(`mongodb://localhost:27017/chat_app`,
+mongoose.connect(`mongodb://127.0.0.1:27017/chat_app`,
     {
         useNewUrlParser: true,
-        useCreateIndex: true,
-        useUnifiedTopology: true,
-        useFindAndModify: true,
-    }, () => {
-        console.log("Database Connected");
+        useUnifiedTopology: true
     })
 
-export const db = mongoose.connection;
+const db = mongoose.connection;
+
+db.once('open', () => {
+    console.log("Local database connected");
+});
