@@ -29,5 +29,4 @@ export const typeDefs = gql`
         testMutation: String
         signUp(payload: SignUpInput): SuccessMessage
     }
-
 `;
