@@ -5,5 +5,5 @@ import {Subscriptions} from "../Subscriptions";
 export const resolvers = {
     Query: Queries,
     Mutation: Mutations,
-    // Subscription: Subscriptions
+    Subscription: Subscriptions
 };

@@ -52,6 +52,14 @@ export const typeDefs = gql`
         receiver: User,
         msgTime: String
     }
+
+    type SubscribeMessage{
+        _id:ID,
+        text: String,
+        sender: String,
+        receiver: String,
+        msgTime: String
+    }
     
     type Query{
         testQueries: String
@@ -65,5 +73,9 @@ export const typeDefs = gql`
         signUp(payload: SignUpInput): SuccessMessage
         createConversation(participantID: ID,):SuccessMessage
         createMessage(payload: MessageInput):SuccessMessage
+    }
+
+    type Subscription{
+        newMessageSubscription: SubscribeMessage
     }
 `;

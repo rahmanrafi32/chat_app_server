@@ -1,5 +1,6 @@
 import {User} from "../../../models/user";
 import {Message} from "../../../models/message";
+import {pubSub} from "../../../constant/pubSub";
 // import {pubSub} from "../../../constant/pubSub";
 
 export const createMessage = async (parents, {
@@ -21,9 +22,9 @@ export const createMessage = async (parents, {
             conversationID
         });
 
-        // await pubSub.publish("NEW_MESSAGE", {newMessage});
+        await pubSub.publish("NEW_MESSAGE", {newMessage});
 
-        await newMessage.save();
+        // await newMessage.save();
 
         return {
             message: "Message sent"

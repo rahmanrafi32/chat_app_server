@@ -1,3 +1,5 @@
-export const Subscriptions = {
+import {newMessageSubscription} from "./newMessage";
 
+export const Subscriptions ={
+    newMessageSubscription
 };
