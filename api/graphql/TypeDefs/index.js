@@ -20,6 +20,33 @@ export const typeDefs = gql`
         password:String
     }
 
+    type User{
+        id:ID,
+        firstName: String,
+        lastName: String,
+        email: String,
+        status:String,
+        phoneNumber:String,
+        profilePic: String,
+        deviceToken: [String],
+    }
+    
+    input MessageInput{
+        text: String,
+        attachment:[String],
+        receiverID:ID,
+        conversationID:ID
+    }
+    
+    type Message{
+        _id:ID,
+        text: String,
+        sender: User,
+        receiver: User,
+        msgTime: String
+    }
+
+
     type Query{
         testQueries: String
         signIn(payload: SignInInput): SuccessMessage!
@@ -28,5 +55,7 @@ export const typeDefs = gql`
     type Mutation{
         testMutation: String
         signUp(payload: SignUpInput): SuccessMessage
+        createConversation(participantID: ID,):SuccessMessage
+        createMessage(payload: MessageInput):SuccessMessage
     }
 `;
