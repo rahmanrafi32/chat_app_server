@@ -9,6 +9,7 @@ import {resolvers, typeDefs} from "./graphql";
 
 import 'dotenv/config';
 import {db} from "./constant/database";
+import {verifyJwtToken} from "./helper/jwtValidator";
 
 async function startApolloServer() {
     const PORT = process.env.PORT;
@@ -24,6 +25,9 @@ async function startApolloServer() {
 
     const server = new ApolloServer({
         schema,
+        context: async ({req}) => {
+            return await verifyJwtToken(req.headers["authorization"]);
+        },
         plugins: [
             ApolloServerPluginDrainHttpServer({httpServer}),
             {
