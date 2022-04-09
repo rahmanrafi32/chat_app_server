@@ -30,14 +30,21 @@ export const typeDefs = gql`
         profilePic: String,
         deviceToken: [String],
     }
-    
+
+    type Conversation{
+        _id: ID,
+        creator: User,
+        participant: User,
+        lastUpdated: String
+    }
+
     input MessageInput{
         text: String,
         attachment:[String],
         receiverID:ID,
         conversationID:ID
     }
-    
+
     type Message{
         _id:ID,
         text: String,
@@ -45,11 +52,12 @@ export const typeDefs = gql`
         receiver: User,
         msgTime: String
     }
-
-
+    
     type Query{
         testQueries: String
         signIn(payload: SignInInput): SuccessMessage!
+        getConversation:[Conversation]
+        getMessages(conversationID: ID):[Message]
     }
 
     type Mutation{

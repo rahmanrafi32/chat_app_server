@@ -9,7 +9,7 @@ const conversationSchema = new mongoose.Schema({
         type: mongoose.Types.ObjectId,
         ref: "User",
     },
-    last_updated: {
+    lastUpdated: {
         type: Date,
         default: Date.now,
     },
