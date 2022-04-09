@@ -25,7 +25,9 @@ export const signUp = async (parent, {payload: {firstName, lastName, email, pass
         });
 
         if (firstName.trim() === "") errors.firstName = ERROR.FIRST_NAME_EMPTY;
+        if (firstName.trim().length < 3) errors.firstName = ERROR.SHORT_NAME;
         if (lastName.trim() === "") errors.lastName = ERROR.LAST_NAME_EMPTY;
+        if (lastName.trim().length < 3) errors.lastName = ERROR.SHORT_NAME;
         if (firstName.length < 3) errors.firstName = ERROR.SHORT_NAME;
         if (lastName.length < 3) errors.lastName = ERROR.SHORT_NAME;
         if (!validEmail(email)) errors.email = ERROR.VALID_EMAIL;
@@ -49,7 +51,7 @@ export const signUp = async (parent, {payload: {firstName, lastName, email, pass
             message: ERROR.SUCCESSFUL
         }
     } catch (err) {
-        console.log(err.extensions.errors);
+        // console.log(err.extensions.errors);
         throw new UserInputError(ERROR_STATUS.BAD_INPUT, err.extensions.errors);
     }
 }
